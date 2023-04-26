@@ -1,10 +1,4 @@
-type ProductsProps = {
-  products: {
-    id: number;
-    name: string;
-    price: number;
-  }[]
-}
+import { ProductsProps } from "../../lib/types/product.types";
 
 export default function Products({ products }: ProductsProps) {
   return (
