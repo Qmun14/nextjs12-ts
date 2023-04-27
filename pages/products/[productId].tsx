@@ -40,6 +40,7 @@ export const getStaticProps = async ({ params }: TgetStaticProps) => {
   return {
     props: {
       product: data
-    }
+    },
+    revalidate: 1,
   }
 }

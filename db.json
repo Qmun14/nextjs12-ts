@@ -8,12 +8,12 @@
     {
       "id": 2,
       "name": "Product 2",
-      "price": 54
+      "price": 5467
     },
     {
       "id": 3,
-      "name": "Product 3",
-      "price": 123
+      "name": "Product 3 Updated",
+      "price": 666
     },
     {
       "id": 4,
