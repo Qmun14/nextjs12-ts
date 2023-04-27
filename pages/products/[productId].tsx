@@ -7,7 +7,7 @@ export default function ProductDetail({ product }: TproductDetail) {
 }
 
 export const getStaticPaths = async () => {
-  const response = await fetch(`http://localhost:5000/products`);
+  const response = await fetch(`http://localhost:5000/products?_limit=2`);
   const data = await response.json();
   const paths = data.map((item: Product) => ({
     params: {
@@ -16,13 +16,20 @@ export const getStaticPaths = async () => {
   }));
   return {
     paths,
-    fallback: false
+    fallback: 'blocking',
   }
 }
 
 export const getStaticProps = async ({ params }: TgetStaticProps) => {
   const response = await fetch(`http://localhost:5000/products/${params.productId}`);
   const data = await response.json();
+
+  if (!data.id) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: {
       product: data
