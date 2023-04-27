@@ -2,8 +2,8 @@
   "products": [
     {
       "id": 1,
-      "name": "Product 1",
-      "price": 923
+      "name": "Product 1 Updated",
+      "price": 12345
     },
     {
       "id": 2,

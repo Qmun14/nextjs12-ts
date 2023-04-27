@@ -12,13 +12,12 @@ export default function Products({ products }: ProductsProps) {
   )
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const response = await fetch('http://localhost:5000/products');
   const data = await response.json();
   return {
     props: {
       products: data
-    },
-    revalidate: 1
+    }
   }
 }
