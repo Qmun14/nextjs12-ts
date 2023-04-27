@@ -1,6 +1,13 @@
+import { useRouter } from "next/router";
 import { Product, TgetStaticProps, TproductDetail } from "../../lib/types/product.types";
 
 export default function ProductDetail({ product }: TproductDetail) {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <div>Loading...</div>
+  }
+
   return (
     <div>{product.name} - {product.price}</div>
   )
@@ -16,7 +23,7 @@ export const getStaticPaths = async () => {
   }));
   return {
     paths,
-    fallback: 'blocking',
+    fallback: true,
   }
 }
 
