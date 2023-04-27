@@ -1,24 +1,22 @@
-import { TgetStaticProps, TproductDetail } from "../../lib/types/product.types";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
-export default function ProductDetail({ product }: TproductDetail) {
-  return (
-    <div>{product.name} - {product.price}</div>
-  )
-}
+export default function ProductDetail() {
+  const [name, setName] = useState('');
+  const [price, setPrice] = useState('');
+  const router = useRouter();
+  const { productId } = router.query;
 
-export const getServerSideProps = async ({ params }: TgetStaticProps) => {
-  const response = await fetch(`http://localhost:5000/products/${params.productId}`);
-  const data = await response.json();
-
-  if (!data.id) {
-    return {
-      notFound: true,
-    };
-  }
-
-  return {
-    props: {
-      product: data
+  useEffect(() => {
+    const getProductById = async () => {
+      const response = await fetch(`http://localhost:5000/products/${productId}`);
+      const data = await response.json();
+      setName(data.name);
+      setPrice(data.price);
     }
-  }
+    getProductById();
+  }, [productId])
+  return (
+    <div>{name} - {price}</div>
+  )
 }
